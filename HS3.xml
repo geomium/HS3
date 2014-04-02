@@ -1,0 +1,129 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleHS3" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+<rule id="ruleHS3">
+    <tag>out.action=new Object(); </tag>
+    <item weight="2">Sarah</item>
+    <one-of>
+	<!--Organisé par fonction -->
+		<item><ruleref uri="#ruleEXECEVENT"/><tag>out.action = rules.ruleEXECEVENT;</tag></item>
+		<item><ruleref uri="#ruleSETDEVICEBYID"/><tag>out.action = rules.ruleSETDEVICEBYID;</tag></item>
+		<item><ruleref uri="#ruleRUNSCRIPTFUNC"/><tag>out.action = rules.ruleRUNSCRIPTFUNC;</tag></item>
+		<item><ruleref uri="#ruleRUNSCRIPT"/><tag>out.action = rules.ruleRUNSCRIPT;</tag></item>
+				<!-- à compléter ... -->
+			</one-of>
+		<tag>out.action._attributes.tts = "Ok"</tag>
+		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/HS3";</tag>
+		
+	</rule> 
+
+    
+
+	<!-- 
+	Execute Event - Starts an Event by Event Name
+	Parameters: 
+	Param1 = (Event Name)
+	-->
+<rule id="ruleEXECEVENT" scope="public">
+    <example>Sarah, fait ceci</example>
+    <tag>out.action=new Object(); </tag>
+    <tag>out.fonction="execevent"; </tag>
+	<one-of>
+		<item>Allume la radio
+			<tag>out.param1="JVC - FM";</tag>
+			<tag>out.param2="";</tag></item>
+		<item>Bonne nuit
+			<tag>out.param1="Dodo";</tag>
+			<tag>out.param2="";</tag></item>
+					
+			<!-- à compléter ... -->
+	</one-of>
+<!--<item weight="2">s'il te plait</item>-->
+</rule>
+
+
+	<!-- 
+	Set Device Status By ID - Sets Status for Device by its Reference ID
+	Parameters:
+	param1 = (Device Reference ID) Can be retrieved from the 'ID' attribute from List Devices.
+	param2 = (Status you want to set) If you Want to set a Lamp to on pass 'On'. If you Want to set a Lamp to off pass 'Off'. If you want to set a 20% Dim value pass 'Dim 20%'
+
+	-->
+<rule id="ruleSETDEVICEBYID" scope="public">
+    <example>Sarah, fait cela</example>
+    <tag>out.action=new Object(); </tag>
+    <tag>out.fonction="setdevicebyid"; </tag>
+	<one-of>
+		<item>ménage activé
+			<tag>out.param1="186";</tag>
+			<tag>out.param2="On";</tag></item>
+		<item>ménage déactivé
+			<tag>out.param1="186";</tag>
+			<tag>out.param2="Off";</tag></item>
+		<item>chauffage salle de bain
+			<tag>out.param1="89";</tag>
+			<tag>out.param2="On";</tag></item>
+		<item>éteint le sèche-serviette
+			<tag>out.param1="89";</tag>
+			<tag>out.param2="Off";</tag></item>
+		<item>allume le chauffage
+			<tag>out.param1="166";</tag>
+			<tag>out.param2="Confort";</tag></item>
+		<item>chauffage mode confort
+			<tag>out.param1="166";</tag>
+			<tag>out.param2="Confort";</tag></item>	
+		<item>chauffage mode économique
+			<tag>out.param1="166";</tag>
+			<tag>out.param2="Eco";</tag></item>	
+		<item>chauffage mode hors-gel
+			<tag>out.param1="166";</tag>
+			<tag>out.param2="Hors-Gel";</tag></item>
+		<item>chauffage mode arrêt
+			<tag>out.param1="166";</tag>
+			<tag>out.param2="Arret";</tag></item>
+		<item>préviens-moi si tu vois le chat
+			<tag>out.param1="169";</tag>
+			<tag>out.param2="On";</tag></item>
+		<item>j'attend un visiteur
+			<tag>out.param1="212";</tag>
+			<tag>out.param2="On";</tag></item>
+		<item>je n'attend plus personne
+			<tag>out.param1="212";</tag>
+			<tag>out.param2="Off";</tag></item>
+		<!-- à compléter ... -->
+	</one-of>
+<!--<item weight="2">s'il te plait</item>-->
+</rule>
+
+<rule id="ruleRUNSCRIPTFUNC" scope="public">
+    <example>Sarah, fait ceci</example>
+    <tag>out.action=new Object(); </tag>
+    <tag>out.fonction="runscriptfunc"; </tag>
+	<one-of>
+		<item>donne moi la température du studio
+			<tag>out.param1="jarvis_script.txt";</tag>
+			<tag>out.param2="Main";out.param3="studio";</tag></item>
+		<item>donne moi la température extérieure
+			<tag>out.param1="jarvis_script.txt";</tag>
+			<tag>out.param2="Main";out.param3="exterieur";</tag></item>		
+			<!-- à compléter ... -->
+	</one-of>
+<!--<item weight="2">s'il te plait</item>-->
+</rule>
+
+<rule id="ruleRUNSCRIPT" scope="public">
+    <example>Sarah, fait ceci</example>
+    <tag>out.action=new Object(); </tag>
+    <tag>out.fonction="runscript"; </tag>
+	<one-of>
+		<item>éteint les lumières de la maison
+			<tag>out.param1="Extinction_toutes_lumieres_Maison.txt";</tag></item>
+		<item>donne moi l'état de la maison
+			<tag>out.param1="Timer.vb";</tag></item>			
+			<!-- à compléter ... -->
+	</one-of>
+<!--<item weight="2">s'il te plait</item>-->
+</rule>
+
+
+<!-- à compléter ... -->
+</grammar>
+
